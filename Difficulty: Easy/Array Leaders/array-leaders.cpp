@@ -1,17 +1,22 @@
+#include <climits>
+#include <algorithm>
+
 class Solution {
 public:
     vector<int> leaders(vector<int>& arr) {
         int n = arr.size();
-        vector<int> res;
-        int mx = arr[n - 1];
-        res.push_back(mx);
-        for (int i = n - 2; i >= 0; i--) {
-            if (arr[i] >= mx) {
-                mx = arr[i];
-                res.push_back(mx);
+        vector<int> ans;
+
+        int maxi = INT_MIN;
+
+        for (int i = n - 1; i >= 0; i--) {
+            if(arr[i] >= maxi) {
+                maxi = arr[i];
+                ans.push_back(arr[i]);
             }
         }
-        reverse(res.begin(), res.end());
-        return res;
+
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
